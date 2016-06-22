@@ -10,8 +10,7 @@
     },
     "leaf": {
         "type": "texture",
-        "location": "textures/leaf.png",
-        "color": [0, 255, 0, 255]
+        "location": "textures/leaf.png"
     },
 
     "ubuntu": {

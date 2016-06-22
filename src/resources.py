@@ -16,11 +16,11 @@ class ResourceManager(object):
         self.prefix = os.path.abspath(os.path.dirname(index_file))
 
         with open(index_file) as reader:
-            self.indices = json.load(reader)
+            self.data = json.load(reader)
 
         self.resources = {}
 
-        for key, value in self.indices.items():
+        for key, value in self.data.items():
             path = self.get_path(key)
             restype = value["type"]
 
@@ -38,11 +38,11 @@ class ResourceManager(object):
     def get_path(self, name):
         return os.path.join(
             self.prefix,
-            self.indices[name]["location"]
+            self.data[name]["location"]
         )
 
     def get_attr(self, name, attr):
-        return self.indices[name][attr]
+        return self.data[name][attr]
 
     def __getitem__(self, name):
         return self.resources[name]
