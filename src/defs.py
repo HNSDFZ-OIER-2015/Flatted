@@ -1,4 +1,4 @@
-VERSION = "V0.0.1"
+VERSION = "V0.0.2"
 DEBUG_MODE = True
 
 # Resources
