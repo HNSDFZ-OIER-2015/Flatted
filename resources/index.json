@@ -1,0 +1,33 @@
+{
+    "icon": {
+        "type": "image",
+        "location": "icon.png"
+    },
+
+    "grass": {
+        "type": "texture",
+        "location": "textures/grass.png"
+    },
+    "leaf": {
+        "type": "texture",
+        "location": "textures/leaf.png",
+        "color": [0, 255, 0, 255]
+    },
+
+    "ubuntu": {
+        "type": "font",
+        "location": "fonts/ubuntu-regular.ttf"
+    },
+    "ubuntu-italic": {
+        "type": "font",
+        "location": "fonts/ubuntu-regular-italic.ttf"
+    },
+    "ubuntu-bold": {
+        "type": "font",
+        "location": "fonts/ubuntu-bold.ttf"
+    },
+    "ubuntu-bold-italic": {
+        "type": "font",
+        "location": "fonts/ubuntu-bold-italic.ttf"
+    }
+}
