@@ -15,8 +15,16 @@ from itembar import Itembar
 
 # Load resources
 res = resources.ResourceManager(INDEX_FILE)
-counter = FPSCounter()
+
 renderer = graphics.Graphics()
+renderer.create_window(
+    DEFAULT_WINDOW_WIDTH, 
+    DEFAULT_WINDOW_HEIGHT,
+    WINDOW_TITLE,
+    res["icon"]
+)
+
+counter = FPSCounter()
 data = grid.Grid(GRID_WIDTH, GRID_HEIGHT, renderer, res)
 itembar = Itembar(renderer, res)
 
@@ -43,6 +51,7 @@ def locate_mouse():
 
 def do_events(graphics, event):
     global data
+    global itembar
 
     if type(event) is KeyEvent:
         if event.code == Keyboard.ESCAPE:
@@ -56,6 +65,9 @@ def do_events(graphics, event):
                     data[(x, y)] = LEAF
             elif event.button == Mouse.RIGHT:
                 data[(x, y)] = EMPTY
+
+    elif type(event) is MouseWheelEvent:
+        itembar.wheel(-event.delta)
 
 
 def update(graphics):
@@ -118,18 +130,10 @@ def render(graphics):
 
 
 # Start up
-renderer.create_window(
-    DEFAULT_WINDOW_WIDTH, 
-    DEFAULT_WINDOW_HEIGHT,
-    WINDOW_TITLE,
-    res["icon"]
-)
-
 renderer.set_clear_color(175, 201, 232)
 renderer.set_do_event_handler(do_events)
 renderer.set_update_handler(update)
 renderer.set_render_handler(render)
 
 initialize()
-
 renderer.main()

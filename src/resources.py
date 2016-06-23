@@ -8,6 +8,11 @@ IMAGE_FILE = "image"
 TEXTURE_FILE = "texture"
 FONT_FILE = "font"
 
+TYPE_KEY = "type"
+INDEX_KEY = "index"
+LOCATION_KEY = "location"
+SETTING_KEY = "setting"
+
 
 class ResourceManager(object):
     def __init__(self, index_file):
@@ -24,7 +29,7 @@ class ResourceManager(object):
 
         for key, value in self.data.items():
             path = self.get_path(key)
-            restype = value["type"]
+            restype = value[TYPE_KEY]
 
             if restype == IMAGE_FILE:
                 self.resources[key] = Image.from_file(path)
@@ -37,16 +42,26 @@ class ResourceManager(object):
                     "Unknown resource type: %s" % (restype)
                 )
 
+            # Load personal settings
+            if SETTING_KEY in value:
+                path = os.path.join(
+                    self.prefix,
+                    value[SETTING_KEY]
+                )
+
+                with open(path) as reader:
+                    self.data[key][SETTING_KEY] = json.load(reader)
+
             # Assign indexes
-            if "index" in value:
-                self.indexes[value["index"]] = self.resources[key]
-                self.index_data[value["index"]] = self.data[key]
+            if INDEX_KEY in value:
+                self.indexes[value[INDEX_KEY]] = self.resources[key]
+                self.index_data[value[INDEX_KEY]] = self.data[key]
 
 
     def get_path(self, name):
         return os.path.join(
             self.prefix,
-            self.data[name]["location"]
+            self.data[name][LOCATION_KEY]
         )
 
     def get_attr(self, name, attr):

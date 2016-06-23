@@ -26,12 +26,15 @@
         "location": "textures/itembar.png",
         "width": 452.5,
         "height": 55,
-        "margin-bottom": 2
+        "margin-bottom": 2,
+        "setting": "textures/itembar.json"
     },
     "item-selected": {
         "index": 25568,
         "type": "texture",
-        "location": "textures/item-selected.png"
+        "location": "textures/item-selected.png",
+        "width": 50,
+        "height": 55
     },
 
     "ubuntu": {

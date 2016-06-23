@@ -3,6 +3,8 @@ from sfml.window import *
 from sfml.system import *
 from sfml.graphics import *
 
+from defs import *
+
 
 class TextStyle:
     REGULAR = Text.REGULAR
@@ -27,6 +29,7 @@ class Graphics(object):
                 (desktop.width - self.window.width) / 2,
                 (desktop.height - self.window.height) / 2,
             )
+            self.window.framerate_limit = FRAMERATE_LIMIT
 
             if not icon is None:
                 # It seems that it doesn't work on Ubuntu
