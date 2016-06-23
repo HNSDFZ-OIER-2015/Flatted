@@ -35,6 +35,15 @@ data.offest(GRID_OFFEST_X, GRID_OFFEST_Y)
 
 counter = FPSCounter()
 itembar = Itembar(renderer, res)
+itembar.set_item(0, GRASS)
+itembar.set_item(1, LEAF)
+itembar.set_item(2, COBBLESTONE)
+itembar.set_item(3, CRAFTING_TABLE)
+itembar.set_item(4, DIRT)
+itembar.set_item(5, FURNACE)
+itembar.set_item(6, FLOWER)
+itembar.set_item(7, LOG)
+itembar.set_item(8, TNT)
 
 
 def locate_mouse():
@@ -54,12 +63,13 @@ def do_events(graphics, event):
 
     elif type(event) is MouseButtonEvent:
         if event.pressed:
-            x, y = locate_mouse()
-            if event.button == Mouse.LEFT:
-                if data[(x, y)] == EMPTY:
-                    data[(x, y)] = LEAF
-            elif event.button == Mouse.RIGHT:
-                data[(x, y)] = EMPTY
+            if itembar.current() > 0:
+                x, y = locate_mouse()
+                if event.button == Mouse.LEFT:
+                    if data[(x, y)] == EMPTY:
+                        data[(x, y)] = itembar.current()
+                elif event.button == Mouse.RIGHT:
+                    data[(x, y)] = EMPTY
 
     elif type(event) is MouseWheelEvent:
         itembar.wheel(-event.delta)

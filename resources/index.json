@@ -14,6 +14,41 @@
         "type": "texture",
         "location": "textures/leaf.png"
     },
+    "cobblestone": {
+        "index": 3,
+        "type": "texture",
+        "location": "textures/cobblestone.png"
+    },
+    "crafting_table": {
+        "index": 4,
+        "type": "texture",
+        "location": "textures/crafting_table.png"
+    },
+    "dirt": {
+        "index": 5,
+        "type": "texture",
+        "location": "textures/dirt.png"
+    },
+    "furnace": {
+        "index": 6,
+        "type": "texture",
+        "location": "textures/furnace.png"
+    },
+    "flower": {
+        "index": 7,
+        "type": "texture",
+        "location": "textures/flower.png"
+    },
+    "log": {
+        "index": 8,
+        "type": "texture",
+        "location": "textures/log.png"
+    },
+    "tnt": {
+        "index": 9,
+        "type": "texture",
+        "location": "textures/tnt.png"
+    },
 
     "mouse_cursor":{
         "index": 25566,
