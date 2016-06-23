@@ -5,12 +5,33 @@
     },
 
     "grass": {
+        "index": 1,
         "type": "texture",
         "location": "textures/grass.png"
     },
     "leaf": {
+        "index": 2,
         "type": "texture",
         "location": "textures/leaf.png"
+    },
+
+    "mouse_cursor":{
+        "index": 25566,
+        "type": "texture",
+        "location": "textures/cursor.png"
+    },
+    "itembar": {
+        "index": 25567,
+        "type": "texture",
+        "location": "textures/itembar.png",
+        "width": 452.5,
+        "height": 55,
+        "margin-bottom": 2
+    },
+    "item-selected": {
+        "index": 25568,
+        "type": "texture",
+        "location": "textures/item-selected.png"
     },
 
     "ubuntu": {

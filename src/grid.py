@@ -45,18 +45,30 @@ class Grid(object):
     def bottom(self):
         return self.offest_y + self.height * BLOCK_SIZE
 
+    def locate(self, x, y):
+        x -= self.offest_x
+        y -= self.offest_y
+
+        return (
+            int(x / BLOCK_SIZE),
+            int(self.height -  y / BLOCK_SIZE)
+        )
+
+    def draw(self, x, y, index):
+        self.graphics.draw_texture(
+            self.resources.get_resource_by_index(index),
+            self.offest_x + BLOCK_SIZE * x,
+            self.offest_y + BLOCK_SIZE * (self.height - y - 1),
+            BLOCK_SIZE, BLOCK_SIZE
+        )
+
     def render(self):
         for i in range(0, self.width):
             for j in range(0, self.height):
                 if self[(i, j)] == EMPTY:
                     continue
 
-                self.graphics.draw_texture(
-                    self.resources[self[(i, j)]],
-                    self.offest_x + BLOCK_SIZE * i,
-                    self.offest_y + BLOCK_SIZE * (self.height - j - 1),
-                    BLOCK_SIZE, BLOCK_SIZE
-                )
+                self.draw(i, j, self[(i, j)])
 
         if DEBUG_MODE:
             bound = RectangleShape()

@@ -19,6 +19,8 @@ class ResourceManager(object):
             self.data = json.load(reader)
 
         self.resources = {}
+        self.indexes = {}
+        self.index_data = {}
 
         for key, value in self.data.items():
             path = self.get_path(key)
@@ -35,6 +37,12 @@ class ResourceManager(object):
                     "Unknown resource type: %s" % (restype)
                 )
 
+            # Assign indexes
+            if "index" in value:
+                self.indexes[value["index"]] = self.resources[key]
+                self.index_data[value["index"]] = self.data[key]
+
+
     def get_path(self, name):
         return os.path.join(
             self.prefix,
@@ -43,6 +51,12 @@ class ResourceManager(object):
 
     def get_attr(self, name, attr):
         return self.data[name][attr]
+
+    def get_resource_by_index(self, index):
+        return self.indexes[index]
+
+    def get_attr_by_index(self, index, attr):
+        return self.index_data[index][attr]
 
     def __getitem__(self, name):
         return self.resources[name]
