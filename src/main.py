@@ -11,10 +11,15 @@ from index import *
 from sfml.window import *
 from graphics import TextStyle
 from itembar import Itembar
+from chunk import Chunk
 
 
 # Load resources
 res = resources.ResourceManager(INDEX_FILE)
+
+# Load data
+chunk = Chunk()
+chunk.load("test.dat")
 
 renderer = graphics.Graphics()
 renderer.create_window(
@@ -24,22 +29,12 @@ renderer.create_window(
     res["icon"]
 )
 
-counter = FPSCounter()
 data = grid.Grid(GRID_WIDTH, GRID_HEIGHT, renderer, res)
+data.load_chunk_data(chunk)
+data.offest(GRID_OFFEST_X, GRID_OFFEST_Y)
+
+counter = FPSCounter()
 itembar = Itembar(renderer, res)
-
-
-def initialize():
-    global data
-
-    for i in range(0, GRID_WIDTH):
-        data[(i, 0)] = GRASS
-
-    for i in range(0, GRID_WIDTH, 2):
-        data[(i, 1)] = LEAF
-    data[(0, GRID_HEIGHT - 1)] = GRASS
-
-    data.offest(GRID_OFFEST_X, GRID_OFFEST_Y)
 
 
 def locate_mouse():
@@ -135,5 +130,7 @@ renderer.set_do_event_handler(do_events)
 renderer.set_update_handler(update)
 renderer.set_render_handler(render)
 
-initialize()
 renderer.main()
+
+chunk = data.get_chunk_data()
+chunk.save("test.dat")

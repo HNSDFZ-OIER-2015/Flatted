@@ -2,6 +2,7 @@ import graphics
 
 from index import *
 from defs import *
+from chunk import Chunk
 from sfml.graphics import RectangleShape, Color
 
 
@@ -28,6 +29,19 @@ class Grid(object):
     def __setitem__(self, pos, v):
         x, y = pos
         self.grid[x][y] = v
+
+    def load_chunk_data(self, chunk):
+        for i in range(0, CHUNK_WIDTH):
+            for j in range(0, CHUNK_HEIGHT):
+                self[i, j] = chunk[i, j]
+
+    def get_chunk_data(self):
+        chunk = Chunk()
+        for i in range(0, CHUNK_WIDTH):
+            for j in range(0, CHUNK_HEIGHT):
+                chunk[i, j] = self[i, j]
+
+        return chunk
 
     def offest(self, delta_x, delta_y):
         self.offest_x += delta_x
